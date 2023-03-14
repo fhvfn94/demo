@@ -8,19 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/calculator")
 public class FirstController {
-    private final CounterService counterService;
-
-    public FirstController(CounterService counterService) {
-        this.counterService = counterService;
-    }
     private int count;
     @GetMapping
     public String showController() {
         return "<b>Hello world</b>";
-    }
-    @GetMapping("/counter")
-    public String showCounter() {
-        return "<b>Hello world</b> " + counterService.getRequestCount();
     }
     @GetMapping("/plus")
     public String showSum(@RequestParam int num1, @RequestParam int num2) {
