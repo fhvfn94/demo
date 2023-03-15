@@ -8,43 +8,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/calculator")
 public class FirstController {
-    private int count;
-    @GetMapping
-    public String showController() {
-        return "<b>Hello world</b>";
+    private final CalculatorService calculatorService;
+    public FirstController(CalculatorService calculatorService) {
+        this.calculatorService = calculatorService;
     }
     @GetMapping("/plus")
     public String showSum(@RequestParam int num1, @RequestParam int num2) {
-        int r = num1 + num2;
-        return num1 + " + " + num2 + " = " + r;
+        return num1 + " + " + num2 + " = " + calculatorService.plus(num1, num2);
     }
-
     @GetMapping("/minus")
     public String showMinus(@RequestParam int num1, @RequestParam int num2) {
-        int r = num1 - num2;
-        if (r != 0 ){
-            return num1 + " - " + num2 + " = " + r;
-        } else {
-            return "Ошибка";
-        }
+        return num1 + " - " + num2 + " = " + calculatorService.minus(num1, num2);
     }
     @GetMapping("/multiply")
     public String showMultiply(@RequestParam int num1, @RequestParam int num2) {
-        if (num1 !=0 && num2 != 0) {
-            int r = num1 * num2;
-            return num1 + " * " + num2 + " = " + r;
-        } else {
-            return "Ошибка";
-        }
+        return num1 + " * " + num2 + " = " + calculatorService.multiply(num1, num2);
     }
-
     @GetMapping("/divide")
     public String showDivide(@RequestParam int num1, @RequestParam int num2) {
-        if (num1 !=0 && num2 != 0) {
-            int r = num1 / num2;
-            return num1 + " / " + num2 + " = " + r;
-        } else {
-            return "Ошибка";
-        }
+        return num1 + " / " + num2 + " = " + calculatorService.divide(num1, num2);
     }
 }
